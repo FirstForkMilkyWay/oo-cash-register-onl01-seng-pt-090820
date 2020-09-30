@@ -1,3 +1,4 @@
+require 'pry'
 class CashRegister 
   
   attr_accessor :cash_register, :cash_register_with_discount, :total, :last_transaction_amount
@@ -21,6 +22,7 @@ class CashRegister
       while i<quantity
         @items << title
         i+=1
+        binding.pry 
       end
     else
       @items << title
