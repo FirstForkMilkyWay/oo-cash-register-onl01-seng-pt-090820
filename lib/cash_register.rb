@@ -31,6 +31,10 @@ class CashRegister
     @total
   end
   
+  def apply_discount 
+    
+  end 
+  
 
 
 end 
