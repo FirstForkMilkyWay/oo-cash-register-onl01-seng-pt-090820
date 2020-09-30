@@ -22,7 +22,6 @@ class CashRegister
       while i<quantity
         @items << title
         i+=1
-        binding.pry 
       end
     else
       @items << title
