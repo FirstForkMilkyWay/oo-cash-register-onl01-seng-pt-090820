@@ -11,7 +11,7 @@ class CashRegister
   end 
   
   def total 
-   100
+   @total
   end 
 
 
