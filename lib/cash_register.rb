@@ -47,8 +47,7 @@ class CashRegister
   end 
   
   def void_last_transaction
-    self.items.slice!(-1)
-    binding.pry 
+    @total -= @last_transaction_amount
   end 
 
 
