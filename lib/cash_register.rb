@@ -4,6 +4,7 @@ class CashRegister
   
   def initialize(cash_register_with_discount = nil)
     @total = 0 
+    @items = [ ]
   end 
   
   def discount(cash_register_with_discount = nil)
