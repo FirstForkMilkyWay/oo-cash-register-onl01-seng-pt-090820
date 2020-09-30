@@ -1,54 +1,39 @@
-require 'pry'
-class CashRegister 
-  
-  attr_accessor :cash_register, :cash_register_with_discount, :total, :last_transaction_amount , :discount 
-  
+class CashRegister
+  attr_accessor :total, :discount, :quantity, :price
+
   def initialize(discount = 0)
-    @total = 0 
-    @discount = discount 
-    @items = [ ]
-  end 
-  
-  def discount(cash_register_with_discount = nil)
-    cash_register_with_discount = 20
-  end 
-  
-  def total 
-   @total
-  end 
-  
- def add_item(title,price,quantity = 1)
-    if quantity>1
-      i=0
-      while i<quantity
-        @items << title
-        i+=1
-      end
-    else
+    @total = 0
+    @discount = discount
+    @price = price
+    @quantity = quantity
+    @items = []
+    @transactions = []
+  end
+
+  def add_item(title, price, quantity = 1)
+    @total += price * quantity
+    @transactions << price
+    i = quantity
+    until i == 0 do
       @items << title
+      i -= 1
     end
-    @total += price*quantity
-    @last_transaction_amount = @total
-    @total
   end
-  
-  def apply_discount()
-    if @discount > 0
-      @discount = @discount/100.to_f
-      @total = @total - (@total * (@discount))
-      "After the discount, the total comes to $#{@total.to_i}."
-    else
+
+  def apply_discount
+    if @discount == 0
       "There is no discount to apply."
+    else
+      self.total -= (0.01 * @discount * @total).to_i
+      "After the discount, the total comes to $#{self.total}."
     end
   end
-  
-  def items 
-    @items 
-  end 
-  
+
+  def items
+    @items
+  end
+
   def void_last_transaction
-    @total -= @last_transaction_amount.pop
-  end 
-
-
-end 
+    self.total = @total - @transactions.pop
+  end
+end
